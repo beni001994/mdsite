@@ -50,7 +50,7 @@ describe('detecting front matter', () => {
   });
 
   it('handles a leading byte order mark', () => {
-    expect(parseFrontMatter('﻿---\ntitle: A\n---\n').data.title).toBe('A');
+    expect(parseFrontMatter('\ufeff---\ntitle: A\n---\n').data.title).toBe('A');
   });
 
   it('keeps a horizontal rule in the body', () => {
@@ -90,7 +90,7 @@ describe('scalar values', () => {
     ['title: "line\\nbreak"', 'line\nbreak'],
     ["title: 'it''s'", "it's"],
     ["title: 'no \\n escape'", 'no \\n escape'],
-    ['title: café 日本', 'café 日本'],
+    ['title: caf\u00e9 \u65e5\u672c', 'caf\u00e9 \u65e5\u672c'],
     ['title: <b>html</b>', '<b>html</b>'],
   ])('%s', (line, expected) => {
     expect(data([line]).title).toBe(expected);
@@ -227,7 +227,7 @@ describe('quoteFrontMatterString', () => {
     '[brackets]',
     'true',
     '  padded  ',
-    'café',
+    'caf\u00e9',
     '',
   ])('round-trips %j', (value) => {
     const parsed = parseFrontMatter(`---\ntitle: ${quoteFrontMatterString(value)}\n---\n`).data.title;

@@ -1,0 +1,7 @@
+{
+  "title": "Field Notes",
+  "description": "A small example site built with mdsite.",
+  "baseUrl": "https://example.com/notes",
+  "language": "en",
+  "author": "Example Author"
+}
