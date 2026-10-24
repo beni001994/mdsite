@@ -1,0 +1,29 @@
+{
+  "name": "mdsite",
+  "version": "0.1.0",
+  "description": "A small static site generator: Markdown with front matter in, static HTML out. Zero runtime dependencies.",
+  "type": "module",
+  "bin": {
+    "mdsite": "dist/bin.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "example": "npm run build && node dist/bin.js build -C example"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^22.10.5",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  }
+}
